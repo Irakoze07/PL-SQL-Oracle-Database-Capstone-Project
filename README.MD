@@ -31,10 +31,10 @@ Small retail stores often struggle with manual inventory tracking. This leads to
 
 ### 🌍 Context
 The system targets a multi-branch retail business:
-✔ 🛒 Supermarkets.
-✔ 💻 Electronic shops.
-✔ 👚 Clothing stores.
-✔ 🔧 Hardware stores.
+- ✔ 🛒 Supermarkets.
+- ✔ 💻 Electronic shops.
+- ✔ 👚 Clothing stores.
+- ✔ 🔧 Hardware stores.
 
 
 ### 🎯 Target Users 👥
@@ -67,13 +67,13 @@ The system targets a multi-branch retail business:
 hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh(diagrams UML/BPMN)
 
 ## 📝Explanation
-🛡️**Organizational Impact:**
+### 🛡️**Organizational Impact:**
 **Mitigation of Stockouts/Overstocking:** By using real-time triggers instead of manual checks, the time-to-alert is reduced to seconds. This allows for proactive replenishment, minimizing stockouts (lost revenue) and reducing the need for expensive emergency orders or overstocking (high holding costs).
 **Improved Decision Confidence:** Ensuring that the sales data used to drive the inventory calculation is validated and audited guarantees that the reorder alerts are based on correct information.
- 🗂️**MIS Functions Modeled:**
+### 🗂️**MIS Functions Modeled:**
 **Transactional Control:** The PL/SQL validation trigger acts as a critical control function, preventing bad data from corrupting the database.
 **Automation:** The system automates the stock status analysis (Step 4), which traditionally required manual reporting, thereby improving restocking efficiency.
- ✨**Analytics Opportunities:**
+### ✨**Analytics Opportunities:**
 The model creates data points for BI in the Audit Log (tracking sources of inaccurate sales data) and the REORDER_ALERT table (analyzing trends in replenishment needs and efficiency).
 
 ## 📐 Phase III: Logical Model Design
@@ -137,16 +137,16 @@ The model creates data points for BI in the Audit Log (tracking sources of inacc
 ---
 
 ## 🔑 Key Assumptions (Phase III: Logical Design)
-**Data & Scope**
-**User Identification:** It is assumed that the Oracle environment can provide a current user ID (SYS_CONTEXT) for all DML operations, allowing the AUDIT_LOG table to accurately track which user performed which action.
-**Master Data Stability:** Dimension tables (SUPPLIER, CATEGORY, etc.) are considered stable. The project primarily focuses on transactional data (SALES_TRANSACTION, INVENTORY_ITEM stock) and the derived data (REORDER_ALERT).
-**Data Validation Rules:** All specific sales data validation rules (e.g., minimum price check, acceptable transaction hours) are predefined and hard-coded into the PL/SQL validation functions and triggers.
-**Inventory & Restocking Logic**
-**Demand Calculation:** The reorder quantity calculation relies on a simple, aggregated metric, specifically the average daily sales over the last 30 days for the relevant item. Complex predictive models (e.g., exponential smoothing, machine learning) are outside the scope.
-**Lead Time:** The supplier lead time (in days) is treated as a static, fixed value stored in the SUPPLIER table and is used directly in the reorder calculation.
-**Safety Stock:** A fixed safety stock level is defined per item within the INVENTORY_ITEM table.
-**Security & Auditing**
-**System Integrity:** The restriction trigger (Phase VII) for security and compliance rules will be implemented based on simple logic, such as blocking DML operations during defined non-business hours or weekends, rather than complex role-based access control (which is handled by Oracle grants).
+### **Data & Scope**
+- **User Identification:** It is assumed that the Oracle environment can provide a current user ID (SYS_CONTEXT) for all DML operations, allowing the AUDIT_LOG table to accurately track which user performed which action.
+- **Master Data Stability:** Dimension tables (SUPPLIER, CATEGORY, etc.) are considered stable. The project primarily focuses on transactional data (SALES_TRANSACTION, INVENTORY_ITEM stock) and the derived data (REORDER_ALERT).
+- **Data Validation Rules:** All specific sales data validation rules (e.g., minimum price check, acceptable transaction hours) are predefined and hard-coded into the PL/SQL validation functions and triggers.
+### **Inventory & Restocking Logic**
+- **Demand Calculation:** The reorder quantity calculation relies on a simple, aggregated metric, specifically the average daily sales over the last 30 days for the relevant item. Complex predictive models (e.g., exponential smoothing, machine learning) are outside the scope.
+- **Lead Time:** The supplier lead time (in days) is treated as a static, fixed value stored in the SUPPLIER table and is used directly in the reorder calculation.
+- **Safety Stock:** A fixed safety stock level is defined per item within the INVENTORY_ITEM table.
+### **Security & Auditing**
+- **System Integrity:** The restriction trigger (Phase VII) for security and compliance rules will be implemented based on simple logic, such as blocking DML operations during defined non-business hours or weekends, rather than complex role-based access control (which is handled by Oracle grants).
 
 ## 🏗️ Phase IV: Database Creation
 
@@ -246,8 +246,8 @@ To implement the physical database structure based on the logical model and inse
 
 #### 🗃️ Insertion:
 
-Dynamic Data Generation (Ensuring 100-500+ rows) using PL/SQL Procedure
-TARGETS: 10 WAREHOUSES, 50 PRODUCTS, 500 INVENTORY, 1000 TRANSACTIONS
+- Dynamic Data Generation (Ensuring 100-500+ rows) using PL/SQL Procedure
+- TARGETS: 10 WAREHOUSES, 50 PRODUCTS, 500 INVENTORY, 1000 TRANSACTIONS
 
 ![Dynamic Data Generation](./screenshots/insertion.png)
 
