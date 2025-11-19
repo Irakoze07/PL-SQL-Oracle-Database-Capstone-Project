@@ -9,7 +9,7 @@
 - **Project Title:** Real-Time Inventory Reorder Alert System 
 - **Course:** INSY 8311 - Database Development with PL/SQL  
 - **Academic Year:** 2025-2026
-- **Institution:**Z Adventist University of Central Africa (AUCA)
+- **Institution:** Adventist University of Central Africa (AUCA)
 - **Lecturer:** Eric Maniraguha (eric.maniraguha@auca.ac.rw)  
 
 ---
